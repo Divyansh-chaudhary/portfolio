@@ -21,23 +21,6 @@
   src: url("../assets/fonts/SourceSansPro-Regular.ttf");
 }
 
-body{
-    &::-webkit-scrollbar-track
-    {
-        -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
-        background-color: #F5F5F5;
-    }
-    &::-webkit-scrollbar
-    {
-        width: 6px;
-        background-color: #F5F5F5;
-    }
-    &::-webkit-scrollbar-thumb
-    {
-        background-color: #000000;
-    }
-}
-
 $primary-color: #1d212c;
 $secondary-color: #e6ebf9;
 $white-color: #ffffff;
@@ -85,13 +68,39 @@ html {
   scroll-behavior: smooth;
 }
 
+.d-none {
+  display: none;
+}
+
 body {
   position: relative;
   overflow-x: hidden;
+  font-family: $font-sans-pro;
+  background: $secondary-color;
+  line-height: 1.5;
+  word-spacing: 2px;
+
+  &::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+    background-color: #f5f5f5;
+  }
+  &::-webkit-scrollbar {
+    width: 6px;
+    background-color: #f5f5f5;
+  }
+  &::-webkit-scrollbar-thumb {
+    background-color: #000000;
+  }
 }
 
 a {
   text-decoration: none;
+}
+
+%put-everything-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 %color-white-and-shadow {
@@ -275,78 +284,136 @@ section.front-page {
     justify-content: center;
     align-items: center;
     flex-direction: column;
+    margin: auto;
     text-align: center;
     padding: 1rem;
     font: 100% $font-sans-pro;
     max-width: 430px;
 
     h3 {
-        font-size: 170%;
-        margin-bottom: 1rem;
+      font-size: 170%;
+      margin-bottom: 1rem;
     }
 
-
     p {
-        line-height: 1.5;
-        letter-spacing: 1.5;
+      line-height: 1.5;
+      letter-spacing: 1.5;
     }
 
     a {
-        color: $orange-color;
-        margin-top: 1rem;
-        border-radius: 5px;
-        padding: 5px 8px;
-        font-size: 130%;
-        font-weight: bold;
+      color: $orange-color;
+      margin-top: 1rem;
+      border-radius: 5px;
+      padding: 5px 8px;
+      font-size: 130%;
+      font-weight: bold;
 
-        &:hover {
-            box-shadow: 5px 5px 7px #d8ddea,
-            -5px -5px 7px #f4f9ff;
-        }
-    }
-  }
-}
-
-section.projects {
-    
-}
-#typewriter {
-  padding: 1rem 10px;
-}
-
-@media screen and (max-width: 650px) {
-  /*-------- front page ----*/
-  section.front-page {
-    grid-template-columns: 1fr;
-    .content {
-      & > div {
-        margin-top: 6rem;
+      &:hover {
+        box-shadow: 5px 5px 7px #d8ddea, -5px -5px 7px #f4f9ff;
       }
     }
   }
+}
 
-  /* about */
-  section.about {
-    grid-template-columns: 1fr;
-    .left {
-      .coding-animation {
+%arrow-pos {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 2rem;
+  z-index: 2;
+  cursor: pointer;
+  opacity: 0;
+  width: 30px;
+  background: rgba(0, 0, 0, 0.3);
+  mix-blend-mode: difference;
+  transition: 0.2s ease-in;
+}
+
+#typewriter {
+  padding: 1rem 10px;
+}
+section.projects {
+  background: $primary-color;
+  border-radius: 2rem;
+  margin: 0 2rem;
+  color: $white-color;
+  text-align: center;
+  padding: 2rem 1rem;
+  overflow: hidden;
+
+  .samples {
+    margin-top: 2rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-gap: 1.5rem;
+
+    & > div {
+      border-radius: 10px;
+      height: 200px;
+      overflow: hidden;
+      box-shadow: 6px 6px 12px #0c0d12, -6px -6px 12px #2e3546;
+      position: relative;
+
+      .cover {
+        opacity: 0;
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(0, 0, 0, 0.8);
+        @extend %put-everything-center;
+
+        a {
+          background: none;
+          border: 2px solid $orange-color;
+          outline: none;
+          border-radius: 2rem;
+          padding: 0.5rem 2rem;
+          font-size: 1.2rem;
+          letter-spacing: 3px;
+          color: $white-color;
+          cursor: pointer;
+          font-family: $font-dancing;
+
+          &:hover {
+            background: $orange-color;
+            color: $black-color;
+            animation: ani 0.2s linear;
+          }
+        }
+        &:hover {
+          opacity: 1;
+        }
+      }
+
+      img {
+        width: 100%;
+        display: inline-block;
+        height: 100%;
+        object-fit: cover;
+        flex: 0 0 auto;
+      }
+    }
+  }
+}
+@keyframes ani {
+  0% {
+    font-size: 1.2rem;
+  }
+  50% {
+    font-size: 1.5rem;
+  }
+  100% {
+    font-size: 1.2rem;
+  }
+}
+@media (max-width: 1024px) {
+  body {
+    section.projects {
+      .samples {
         & > div {
-          height: 130px;
-          width: 250px;
-          &.html-animation {
-            top: 1rem;
-            left: 2rem;
-          }
-          &.css-animation {
-            top: 43%;
-            left: 0px;
-            transform: translateY(-50%);
-          }
-          &.js-animation {
-            top: 72%;
-            left: 2.3rem;
-            transform: translateY(-50%);
-          }
+          height: 150px;
         }
       }
     }
@@ -356,10 +423,68 @@ section.projects {
 @media (max-width: 770px) {
   body {
     .front-page {
+      padding: 2rem;
       .image-container {
         background-image: none;
         img {
           display: block;
+        }
+      }
+    }
+
+    section.projects {
+      .samples {
+        grid-template-columns: 1fr 1fr;
+        & > div {
+          height: 200px;
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 650px) {
+  body {
+    section.front-page {
+      grid-template-columns: 1fr;
+      .content {
+        & > div {
+          margin-top: 6rem;
+        }
+      }
+    }
+
+    /* about */
+    section.about {
+      grid-template-columns: 1fr;
+      .left {
+        .coding-animation {
+          & > div {
+            height: 150px;
+            width: 260px;
+            &.html-animation {
+              top: 1rem;
+              left: 2rem;
+            }
+            &.css-animation {
+              top: 43%;
+              left: 0px;
+              transform: translateY(-50%);
+            }
+            &.js-animation {
+              top: 72%;
+              left: 2.3rem;
+              transform: translateY(-50%);
+            }
+          }
+        }
+      }
+    }
+    section.projects {
+      .samples {
+        grid-template-columns: 1fr;
+        & > div {
+          height: 200px;
         }
       }
     }
