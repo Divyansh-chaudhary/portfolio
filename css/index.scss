@@ -1,0 +1,367 @@
+*,
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+@font-face {
+  font-family: "stick";
+  src: url("../assets/fonts/Stick-Regular.ttf");
+}
+
+@font-face {
+  font-family: "dancing";
+  src: url("../assets/fonts/DancingScript-VariableFont_wght.ttf");
+}
+
+@font-face {
+  font-family: "sans-pro";
+  src: url("../assets/fonts/SourceSansPro-Regular.ttf");
+}
+
+body{
+    &::-webkit-scrollbar-track
+    {
+        -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+        background-color: #F5F5F5;
+    }
+    &::-webkit-scrollbar
+    {
+        width: 6px;
+        background-color: #F5F5F5;
+    }
+    &::-webkit-scrollbar-thumb
+    {
+        background-color: #000000;
+    }
+}
+
+$primary-color: #1d212c;
+$secondary-color: #e6ebf9;
+$white-color: #ffffff;
+$light-color: #d3d3d3;
+$black-color: #000000;
+$yellow-color: #ffff00;
+$golden-brown-color: #f69633;
+$green-color: #1cef5b;
+$purple-color: #6666ff;
+$orange-color: #ff6600;
+$blue-color: #1167b1;
+$font-stick: "stick";
+$font-dancing: "dancing";
+$font-sans-pro: "sans-pro";
+
+.white-txt {
+  color: $white-color;
+}
+
+.purple-txt {
+  color: $purple-color;
+}
+
+.green-txt {
+  color: $green-color;
+}
+
+.yellow-txt {
+  color: $yellow-color;
+}
+
+.golden-brown-txt {
+  color: $golden-brown-color;
+}
+
+.orange-txt {
+  color: $orange-color;
+}
+
+.blue-txt {
+  color: $blue-color;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  position: relative;
+  overflow-x: hidden;
+}
+
+a {
+  text-decoration: none;
+}
+
+%color-white-and-shadow {
+  color: $white-color;
+  text-shadow: 2px 2px 20px $white-color;
+}
+
+.floating-navbar {
+  position: sticky;
+  top: 0;
+  color: $black-color;
+  width: 100%;
+  background-color: $light-color;
+  z-index: 999;
+  border-radius: 0 0 10px 10px;
+
+  .navbar {
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: center;
+    overflow-x: auto;
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
+    .navitem {
+      list-style-type: none;
+
+      a {
+        color: $black-color;
+        display: inline-block;
+        padding: 10px;
+        font-weight: 500;
+        &:hover {
+          font-weight: 700;
+        }
+      }
+    }
+  }
+}
+
+section.front-page {
+  min-height: 100vh;
+  background-color: $primary-color;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+
+  .content {
+    color: $light-color;
+    display: grid;
+    place-items: center;
+    text-align: center;
+
+    * {
+      width: fit-content;
+      margin: auto;
+      cursor: pointer;
+    }
+
+    p {
+      font-family: $font-stick;
+      font-size: 1.6rem;
+      &:hover {
+        @extend %color-white-and-shadow;
+      }
+    }
+
+    a {
+      font-size: 4rem;
+      font-weight: 100;
+      color: $light-color;
+      margin-bottom: 1rem;
+      display: inline-block;
+      transition: 0.2s;
+      &:hover {
+        @extend %color-white-and-shadow;
+      }
+    }
+
+    h2 {
+      font-size: 1.1rem;
+      font-family: $font-stick;
+      font-weight: 100;
+      &:hover {
+        color: $white-color;
+      }
+    }
+  }
+
+  .image-container {
+    display: grid;
+    place-items: center;
+    background-image: url("../img/divyansh.jpg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+
+    img {
+      display: none;
+      width: 300px;
+      border: 1px solid $light-color;
+      padding: 8px;
+      background: $white-color;
+      border-radius: 5px;
+      transform: translateX(200%);
+      transition: transform 0.4s;
+      object-fit: contain;
+      position: relative;
+      &:hover {
+        box-shadow: 6px 6px 20px $light-color;
+      }
+    }
+  }
+}
+
+.about {
+  display: grid;
+  grid-template-columns: 4fr 3fr;
+  min-height: 80vh;
+  background: $secondary-color;
+
+  .left {
+    display: grid;
+    place-items: center;
+
+    .coding-animation {
+      position: relative;
+      height: 400px;
+      width: 320px;
+
+      & > div {
+        position: absolute;
+        font-family: $font-sans-pro;
+        height: 150px;
+        width: 300px;
+        box-shadow: 5px 5px 15px $black-color;
+        border-radius: 10px;
+        background: $primary-color;
+
+        &.html-animation {
+          top: 1rem;
+          left: -1rem;
+        }
+        &.css-animation {
+          top: 40%;
+          left: 80px;
+          transform: translateY(-50%);
+        }
+        &.js-animation {
+          top: 75%;
+          left: 1rem;
+          transform: translateY(-50%);
+        }
+      }
+      .header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 5px 10px;
+
+        .left {
+          display: flex;
+          justify-content: start;
+          align-items: center;
+        }
+
+        i {
+          color: $light-color;
+        }
+        span {
+          font-size: 0.7rem;
+          font-weight: 800;
+          color: $white-color;
+          margin-left: 5px;
+        }
+      }
+    }
+  }
+  .right {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    text-align: center;
+    padding: 1rem;
+    font: 100% $font-sans-pro;
+    max-width: 430px;
+
+    h3 {
+        font-size: 170%;
+        margin-bottom: 1rem;
+    }
+
+
+    p {
+        line-height: 1.5;
+        letter-spacing: 1.5;
+    }
+
+    a {
+        color: $orange-color;
+        margin-top: 1rem;
+        border-radius: 5px;
+        padding: 5px 8px;
+        font-size: 130%;
+        font-weight: bold;
+
+        &:hover {
+            box-shadow: 5px 5px 7px #d8ddea,
+            -5px -5px 7px #f4f9ff;
+        }
+    }
+  }
+}
+
+section.projects {
+    
+}
+#typewriter {
+  padding: 1rem 10px;
+}
+
+@media screen and (max-width: 650px) {
+  /*-------- front page ----*/
+  section.front-page {
+    grid-template-columns: 1fr;
+    .content {
+      & > div {
+        margin-top: 6rem;
+      }
+    }
+  }
+
+  /* about */
+  section.about {
+    grid-template-columns: 1fr;
+    .left {
+      .coding-animation {
+        & > div {
+          height: 130px;
+          width: 250px;
+          &.html-animation {
+            top: 1rem;
+            left: 2rem;
+          }
+          &.css-animation {
+            top: 43%;
+            left: 0px;
+            transform: translateY(-50%);
+          }
+          &.js-animation {
+            top: 72%;
+            left: 2.3rem;
+            transform: translateY(-50%);
+          }
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 770px) {
+  body {
+    .front-page {
+      .image-container {
+        background-image: none;
+        img {
+          display: block;
+        }
+      }
+    }
+  }
+}
